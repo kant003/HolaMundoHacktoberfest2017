@@ -3,11 +3,12 @@
 
 from time import sleep
 
-delay = 0.025
+delay = 0.042
+N=420
 
-print("Huehuehue :V")
+print("Hi there!")
 
-for i in range(420):
+for i in range(1,N+1):
 	print( "Moar SPAM!!! >:V #{}".format(i+1) )
 	sleep(delay)
 
