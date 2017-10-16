@@ -1,0 +1,1 @@
+print("el que te foca, el que te parte la boca")
