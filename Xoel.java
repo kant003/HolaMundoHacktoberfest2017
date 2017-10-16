@@ -1,3 +1,4 @@
 public class Xoel{
-    system.out.println("Bob Esponja")
-}
+    public static void main(String[] args){
+    system.out.println("Bob Esponja");
+}}
