@@ -8,7 +8,10 @@ namespace GTAV_ArmorRecovery
         private int nativeArmor;
         private int prevArmor;
         private Ped prevPlayer;
+        private DateTime lastArmorDecrease;
+
         private const bool debugActivated = true;
+        private const int armorRecoveryDelay = 5;
 
         public ArmorRecovery()
         {
@@ -18,7 +21,9 @@ namespace GTAV_ArmorRecovery
 
         private void debug(string s)
         {
-            GTA.UI.ShowSubtitle(s);
+            if (debugActivated) {
+                GTA.UI.ShowSubtitle(s);
+            }
         }
 
         private void OnTick(object sender, EventArgs e)
@@ -27,15 +32,25 @@ namespace GTAV_ArmorRecovery
             int armor = player.Armor;
 
             bool hasArmor = false;
-            if (player.Armor > 0) hasArmor = true;
+            if (armor > 0) hasArmor = true;
+
             if (player != prevPlayer) {
                 debug("Player character has changed!");
             }
-            else if (armor < prevArmor) {
+
+            else if (hasArmor && armor < prevArmor) {
                 debug("Armor decreased! (from " + prevArmor.ToString() + " to " + armor.ToString() + ")");
+                lastArmorDecrease = DateTime.Now;
             }
-            else if (armor > prevArmor) {
+
+            else if (hasArmor && armor > prevArmor) {
                 debug("Armor increased! (from " + prevArmor.ToString() + " to " + armor.ToString() + ")");
+                nativeArmor = armor;
+            }
+
+            else if ((DateTime.Now - lastArmorDecrease).TotalSeconds > armorRecoveryDelay) {
+                armor = nativeArmor;
+                debug("Armor recovered!");
             }
 
             prevArmor = armor;
