@@ -10,12 +10,12 @@ public class Sumar2Numeros {
 		
 		// leer numero 1
 		System.out.println("Inserta el primer nº");
-		numero1 = lector.nextFloat();
+		numero3 = lector.nextFloat();
 		// leer numero 2
 		System.out.println("Inserta el segundo nº");
 		numero2 = lector.nextFloat();
 		// sumarlo
-		resultado = numero1+numero2;
+		resultado = numero1+numero3;
 		// mostrar el resultado por pantalla
 		System.out.println( resultado );
 		lector.close();
